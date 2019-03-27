@@ -12,15 +12,15 @@ class Scraper(object):
         assert isinstance(urls, list), "urls should be list"
         self.urls = urls
 
-    async def fetch(self, url, mySemaphore):
-        await mySemaphore.acquire()
+    async def fetch(self, url, semaphore):
+        await semaphore.acquire()
         assert url is not None, "url should not be None"
         assert isinstance(url, str), "url should be string"
         print(url)
         response = await requests.get(url)
         html = await response.text()
         data = await self.parse(url, html)
-        mySemaphore.release()
+        semaphore.release()
         return data
 
     async def parse(self, url, html=None):
@@ -39,10 +39,10 @@ class Scraper(object):
         return rows
 
     async def scrape(self):
-        mySemaphore = asyncio.Semaphore(value=3)
+        semaphore = asyncio.Semaphore(value=3)
         tasks = []
         for url in self.urls:
-            tasks.append(self.fetch(url, mySemaphore))
+            tasks.append(self.fetch(url, semaphore))
         data = await asyncio.gather(*tasks)
         return data
 
