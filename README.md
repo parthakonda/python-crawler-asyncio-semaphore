@@ -1,4 +1,4 @@
-# python-crawler-asyncio
+# python-crawler-asyncio-semaphore
 Python code to crawl list of urls using single process single thread with asyncio
 
 # Python version
@@ -9,11 +9,11 @@ Python code to crawl list of urls using single process single thread with asynci
 # Setup Instructions
 ```
 cd ~/
-git clone git@github.com:parthakonda/python-crawler-asyncio.git
+git clone git@github.com:parthakonda/python-crawler-asyncio-semaphore.git
 sudo pip install virtualenv
 virtualenv -p python3 ~/venv
 source ~/venv/bin/activate
-pip3 install ~/python-crawler-asyncio/requirements.txt
+pip3 install ~/python-crawler-asyncio-semaphore/requirements.txt
 ```
 
 # To run
